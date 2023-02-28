@@ -18,6 +18,7 @@
 * It convert const and let  to var its supperts all broswers 
 
 
+
 # If we want to complaie auto => tsc filename.ts -w
 
 * main defferent between js and ts. ts use strict .
@@ -149,3 +150,148 @@
     ninja = { name: 25, age: 'yoshi' };
     console.log(ninja);
 
+
+### function
+
+
+    let greet = () => {
+        console.log("Hello world")
+    }
+
+    if we use one function name at one it not possible to use varbile later
+
+    let greet = " hello world " // Error
+    ---------------------------------------------------------------
+
+    let add(a:number , b :number ) {
+        console.log(a+b)
+    }    
+
+    If we to write optional parmater 
+
+     let add(a:number , b :number , c? : number | straing) {
+        console.log(a+b)
+
+        // ? is important to use opation union   // if we use default value no need to use ? ,c : number | straing =10
+    }   
+
+    -------------------------------------------------------------
+
+### Declearing function
+
+    let greet = Function // F caplate later is importent
+
+         let add(a:number , b :number ) {
+        console.log(a+b)
+        
+        }
+
+        greet = "Hello world" // Error
+
+
+
+    let minus = (a,b) {
+        return a + b
+    }
+
+    let result = minus =>(7,8)
+        result => minus function return always number
+    
+    result = "hello world" // Error
+
+    * If you want  explact return 
+
+    let minus = (a,b):number  =>{
+        return a + b
+    }// but no need to explact return it automatic convertd If we need some case
+
+
+### Function Signatures
+
+// example 1
+let greet: (a: string, b: string) => void;
+
+greet = (name: string, greeting: string) => {
+  console.log(`${name} says ${greeting}`);
+}
+
+
+
+// example 2
+let calc: (a: number, b: number, c: string) => number;
+
+calc = (numOne: number, numTwo: number, action: string) => {
+  if (action === 'add') {
+    return numOne + numTwo;
+  } else {
+    return numOne - numTwo;
+  }
+}
+
+
+// example 3
+let logDetails: (obj: {name: string, age: number}) => void;
+
+logDetails = (ninja: {name: string, age: number}) => {
+  console.log(`${ninja.name} is ${ninja.age} years old`);
+}
+
+
+
+### DOM
+    if we derectaly get dom it through error beasuse it return null we object prorpets at works js
+        we can avoid by 3 ways
+
+        1. const anchor = document.querySelector('a')!; // using ! at end
+
+        2.if(anchor){
+            console.log(anchor.href)
+        }
+
+        3. console.log(anchor?.href) using ? symbole at object and object because html elemnet treated as object in js
+
+
+
+    const anchor = document.querySelector('a')!;
+
+
+
+### Type Casting
+
+    * If we one element but same name two are more elements. then we use class or id 
+
+
+    * form treated as element
+         const form = document.querySelector('.new-item-form')!
+            console.log(form.children) // Error
+
+
+        we use Typecasting as TMLFormElement
+            const form = document.querySelector('.new-item-form') as HTMLFormElement;
+
+
+###  classes
+
+
+class Invoice {
+  client: string;
+  details: string;
+  amount: number;
+
+  constructor(c: string, d: string, a: number){
+    this.client = c;
+    this.details = d;
+    this.amount = a;
+  }
+
+  format() {
+    return `${this.client} owes £${this.amount} for ${this.details}`;
+  }
+}
+
+const invOne = new Invoice('mario', 'work on the mario website', 250);
+const invTwo = new Invoice('luigi', 'work on the luigi website', 300);
+
+
+
+    
